@@ -21,3 +21,10 @@ def get_images(image_files):
         images.append(image)
 
     return images
+
+
+def get_images_from_path(image_path):
+    image_files = get_image_files(image_path)
+    images = get_images(image_files)
+
+    return images
