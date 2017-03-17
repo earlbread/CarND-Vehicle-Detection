@@ -1,6 +1,8 @@
 import os
 import fnmatch
 
+import cv2
+
 def get_image_files(image_path):
     """Return a list of all image files from given image path.
     """
@@ -9,3 +11,13 @@ def get_image_files(image_path):
             for f in fnmatch.filter(files, '*.png')]
 
     return image_files
+
+
+def get_images(image_files):
+    images = []
+    for f in image_files:
+        image = cv2.imread(f)
+
+        images.append(image)
+
+    return images
