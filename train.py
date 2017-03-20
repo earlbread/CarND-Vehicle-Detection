@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 import feature
 
 def train_and_save(color_space='YCrCb', orient=9, pix_per_cell=8, cell_per_block=2,
-        hog_channel='ALL', spatial_size=(32, 32), hist_bins=32, spatial_feat=True,
+        hog_channel='ALL', spatial_size=(16, 16), hist_bins=32, spatial_feat=True,
         hist_feat=True, hog_feat=True):
 
     cars = glob.glob('./data/vehicles/**/*.png')
@@ -66,6 +66,12 @@ def train_and_save(color_space='YCrCb', orient=9, pix_per_cell=8, cell_per_block
     # Check the score of the SVC
     print('Test Accuracy of SVC = {:.4f}'.format(svc.score(X_test, y_test)))
     # Check the prediction time for a single sample
+    t=time.time()
+    n_predict = 10
+    print('My SVC predicts: ', svc.predict(X_test[0:n_predict]))
+    print('For these',n_predict, 'labels: ', y_test[0:n_predict])
+    t2 = time.time()
+    print(round(t2-t, 5), 'Seconds to predict', n_predict,'labels with SVC')
 
     dist_pickle = {}
     dist_pickle["color_space"] = color_space
